@@ -1,4 +1,4 @@
-@extends('principal')
+@extends('layout.principal')
 
 @section('conteudo')
 
@@ -6,7 +6,7 @@
     <div class="alert-danger">Você não tem produtos cadastrados!</div>
 
   @else
-    <h1>Listagem de Produtos</h1>
+    <h1 class="margem-20">Listagem de Produtos</h1>
 
     <table class="table table-striped table-bordered">
       <thead>
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
       @foreach ($produtos as $p) :
-      <tr>
+      <tr class="{{ $p->quantidade <= 1 ? 'bg-danger' : '' }}">
         <td>{{ $p->nome }}</td>
         <td>{{ $p->valor }}</td>
         <td>{{ $p->descricao }}</td>
@@ -33,4 +33,11 @@
       </tbody>
     </table>
   @endif
+
+  <h4>
+    <span class="badge badge-danger pull-right">
+      Um ou menos itens no estoque
+    </span>
+  </h4>
+
 @stop
