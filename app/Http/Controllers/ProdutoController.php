@@ -1,7 +1,6 @@
 <?php namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 
 class ProdutoController extends Controller
 {
@@ -9,17 +8,11 @@ class ProdutoController extends Controller
   {
     $produtos = DB::select('SELECT * FROM produtos');
 
-    $data = [
-        'produtos' => $produtos
-    ];
-
-    return view('listagem', $data);
+    return view('listagem')->with('produtos', $produtos);
   }
 
   public function mostra($id)
   {
-    //$id = Request::route('id');
-
     $resposta = DB::select('SELECT * FROM produtos WHERE id = ?', [$id]);
 
     if (empty($resposta)) {
