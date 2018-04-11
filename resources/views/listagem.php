@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf8">
   <link href="/css/app.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/">
+  <link rel="stylesheet" href="">
   <title>Controle de Estoque</title>
 </head>
 <body>
@@ -14,6 +17,7 @@
     <th>Valor</th>
     <th>Descrição</th>
     <th>Quantidade</th>
+    <th>Detalhes</th>
     </thead>
     <tbody>
     <?php foreach ($produtos as $p) : ?>
@@ -22,6 +26,11 @@
         <td><?= $p->valor ?></td>
         <td><?= $p->descricao ?></td>
         <td><?= $p->quantidade ?></td>
+        <td>
+          <a href="/produtos/mostra">
+            <span class="fa fa-search"></span>
+          </a>
+        </td>
       </tr>
     <?php endforeach; ?>
     </tbody>
