@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf8">
   <link href="/css/app.css" rel="stylesheet">
-  <link rel="stylesheet" href="/css/">
-  <link rel="stylesheet" href="">
   <title>Controle de Estoque</title>
 </head>
 <body>
@@ -27,7 +25,7 @@
         <td><?= $p->descricao ?></td>
         <td><?= $p->quantidade ?></td>
         <td>
-          <a href="/produtos/mostra">
+          <a href="/produtos/mostra/<?= $p->id ?>">
             <span class="fa fa-search"></span>
           </a>
         </td>
