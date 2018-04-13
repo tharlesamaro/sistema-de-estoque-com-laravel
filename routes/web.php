@@ -11,15 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-  return 'Primeira lógica com laravel';
-});
-
 Route::get('/produtos', 'ProdutoController@lista');
+
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+');
+
 Route::get('/produtos/novo', 'ProdutoController@novo');
+
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+
 Route::get('/produtos/json', 'ProdutoController@listaJson');
+
 Route::get('/produtos/remove/{id}', 'ProdutoController@remove')->where('id', '[0-9]+');
+
 Route::get('produtos/altera/{id}', 'ProdutoController@alteraForm')->where('id', '[0-9]+');
+
 Route::post('produtos/edita/{id}', 'ProdutoController@altera')->where('id', '[0-9]+');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

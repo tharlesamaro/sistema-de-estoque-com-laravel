@@ -1,10 +1,17 @@
 <?php namespace estoque\Http\Controllers;
 
+use estoque\Http\Requests\ProdutosRequest;
 use estoque\Produto;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class ProdutoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function lista()
     {
         $produtos = Produto::all();
@@ -27,9 +34,9 @@ class ProdutoController extends Controller
         return view('produto.formulario');
     }
 
-    public function adiciona()
+    public function adiciona(ProdutosRequest $request)
     {
-        Produto::create(Request::all());
+        Produto::create($request->all());
         return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
     }
 
@@ -45,17 +52,19 @@ class ProdutoController extends Controller
         return redirect()->action('ProdutoController@lista')->withInput(Request::only('editado'));
     }
 
-    public function alteraForm($id) {
+    public function alteraForm($id)
+    {
         $produto = Produto::find($id);
         return view('produto.altera-formulario')->with('p', $produto);
     }
 
-    public function editar() {
-
-    }
-
     public function remove($id)
     {
+        if (Auth::guest())
+        {
+            return redirect('/login');
+        }
+
         $produto = Produto::find($id);
         $produto->delete();
         return redirect()->action('ProdutoController@lista');
