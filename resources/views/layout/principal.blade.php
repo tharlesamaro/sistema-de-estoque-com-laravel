@@ -11,10 +11,10 @@
       <a class="navbar-brand" href="/produtos" id="titulo-principal">Estoque Laravel</a>
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="/produtos">Listagem <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{ action('ProdutoController@lista') }}">Listagem <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/produtos/novo">Adicionar</a>
+          <a class="nav-link" href="{{ action('ProdutoController@novo') }}">Adicionar</a>
         </li>
       </ul>
     </nav>
